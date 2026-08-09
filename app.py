@@ -12,8 +12,21 @@ headers = {
     "X-Auth-Token": api_token
 } # Cabeçalho da requisição HTTP, incluindo a chave da API para autenticação
 
-# Endpoint, pegar os dados do brasileirão
-url = "https://api.football-data.org/v4/competitions/BSA/standings"
+leagues = ['BSA', 'PL', 'PD']
+
+# # Endpoint, pegar os dados do brasileirão
+# url = "https://api.football-data.org/v4/competitions/BSA/standings"
+
+def getRequestFromLeague(league: str)->dict:
+    url = f"https://api.football-data.org/v4/competitions/{league}/standings"
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("Houve um erro na requisição")
+        return {}
 
 def getTabelaDF(dados: list)->pd.DataFrame: #recebe o json de dados da API e retorna a tabela do campeonato como DataFrame
     dadosLimpos = []
@@ -33,15 +46,29 @@ def getTabelaDF(dados: list)->pd.DataFrame: #recebe o json de dados da API e ret
     df = pd.DataFrame(dadosLimpos) #cria o data frame em cima dos dados já separados
     return df
 
-resposta = requests.get (url, headers=headers) # Fazer uma requisição GET para o endpoint da API com os cabeçalhos definidos
-if resposta.status_code == 200: # Verificar se a requisição foi bem-sucedida (código de status 200)
-    dados = resposta.json() # Converter a resposta em formato JSON para um dicionário Python
+def saveTabela(df, league):
+    df.to_csv(f'data/tabela_{league}.csv', index=False)
+
+# resposta = requests.get (url, headers=headers) # Fazer uma requisição GET para o endpoint da API com os cabeçalhos definidos
+# if resposta.status_code == 200: # Verificar se a requisição foi bem-sucedida (código de status 200)
+#     dados = resposta.json() # Converter a resposta em formato JSON para um dicionário Python
     
-    if dados: #caso a requisição retorne dados vazios, não chama a função de data frame
+#     if dados: #caso a requisição retorne dados vazios, não chama a função de data frame
+#         tabela = getTabelaDF(dados)
+#         print(tabela)
+#     else:
+#         print('Dados vazios')
+
+for league in leagues:
+    dados = getRequestFromLeague(league)
+
+    if dados:
         tabela = getTabelaDF(dados)
-        print(tabela)
+        saveTabela(tabela, league)
     else:
-        print('Dados vazios')
+        print("Dados vazios")
+
+
             
     # area_dados = dados.get('area') # Obter os dados do Brasil no JSON
     # estrutura_formatada = json.dumps(area_dados, indent=4, ensure_ascii=False)
@@ -53,6 +80,6 @@ if resposta.status_code == 200: # Verificar se a requisição foi bem-sucedida (
     # print("ESTRUTURA COMPLETA DO JSON")
     # print("==================================\n")
     # print(estrutura_formatada)
-else:
-    print(f"Erro ao obter dados da API: {resposta.status_code}") # Imprimir uma mensagem de erro caso a requisição não tenha sido bem-sucedida
+# else:
+#     print(f"Erro ao obter dados da API: {resposta.status_code}") # Imprimir uma mensagem de erro caso a requisição não tenha sido bem-sucedida
     
