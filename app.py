@@ -14,9 +14,6 @@ headers = {
 
 leagues = ['BSA', 'PL', 'PD']
 
-# # Endpoint, pegar os dados do brasileirão
-# url = "https://api.football-data.org/v4/competitions/BSA/standings"
-
 def getRequestFromLeague(league: str)->dict:
     url = f"https://api.football-data.org/v4/competitions/{league}/standings"
 
@@ -28,58 +25,50 @@ def getRequestFromLeague(league: str)->dict:
         print("Houve um erro na requisição")
         return {}
 
-def getTabelaDF(dados: list)->pd.DataFrame: #recebe o json de dados da API e retorna a tabela do campeonato como DataFrame
-    dadosLimpos = []
-    for time in dados['standings'][0]['table']: #para cada time da tabela, adiciona os dados importantes no array de dados limpos
-        dadosLimpos.append({
-            'posicao': time['position'],
-            'nome_time': time['team']['name'],
-            'total_jogos': time['playedGames'],
-            'vitorias': time['won'],
-            'empates': time['draw'],
-            'derrotas': time['lost'],
-            'gols_pro': time['goalsFor'],
-            'gols_contra': time['goalsAgainst'],
-            'saldo_de_gols': time['goalDifference'],
-            'pontos': time['points']
-        })
-    df = pd.DataFrame(dadosLimpos) #cria o data frame em cima dos dados já separados
-    return df
-
-def saveTabela(df, league):
-    df.to_csv(f'data/tabela_{league}.csv', index=False)
-
-# resposta = requests.get (url, headers=headers) # Fazer uma requisição GET para o endpoint da API com os cabeçalhos definidos
-# if resposta.status_code == 200: # Verificar se a requisição foi bem-sucedida (código de status 200)
-#     dados = resposta.json() # Converter a resposta em formato JSON para um dicionário Python
+def getTabelaDF(dados: dict)->pd.DataFrame: #recebe o json de dados da API e retorna a tabela do campeonato como DataFrame
     
-#     if dados: #caso a requisição retorne dados vazios, não chama a função de data frame
-#         tabela = getTabelaDF(dados)
-#         print(tabela)
-#     else:
-#         print('Dados vazios')
+    if not dados or 'standings' not in dados or not dados['standings']:
+        print("Aviso: 'standings' veio vazio ou não existe para esta temporada/liga.")
+        return pd.DataFrame() # Retorna DataFrame vazio seguro
+    
+    dadosLimpos = []
+    
+    try: # Tente mapear os dados do JSON para o DataFrame
+        tabela_posicoes = dados['standings'][0]['table']
+        for time in tabela_posicoes: #para cada time da tabela, adiciona os dados importantes no array de dados limpos
+            dadosLimpos.append({
+                'posicao': time['position'],
+                'nome_time': time['team']['name'],
+                'total_jogos': time['playedGames'],
+                'vitorias': time['won'],
+                'empates': time['draw'],
+                'derrotas': time['lost'],
+                'gols_pro': time['goalsFor'],
+                'gols_contra': time['goalsAgainst'],
+                'saldo_de_gols': time['goalDifference'],
+                'pontos': time['points']
+            })
+    except (KeyError, IndexError) as e: # Captura erros de chave ou indice caso a estrutura do JSON não seja a esperada
+        print(f"Erro de estrutura ao mapear JSON: {e}")
+        return pd.DataFrame()
+
+    return pd.DataFrame(dadosLimpos) # Retorna o DataFrame com os dados limpos 
+
+# Função para salvar a tabela em um arquivo CSV, ajustei por que tava dadno erro na minha maquina
+def saveTabela(df, league):
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    output_dir = os.path.join(base_dir, 'data')
+    
+    os.makedirs(output_dir, exist_ok=True) 
+    
+    file_path = os.path.join(output_dir, f'tabela_{league}.csv')
+    df.to_csv(file_path, index=False)
 
 for league in leagues:
     dados = getRequestFromLeague(league)
+    tabela = getTabelaDF(dados)
 
-    if dados:
-        tabela = getTabelaDF(dados)
+    if not tabela.empty:
         saveTabela(tabela, league)
     else:
-        print("Dados vazios")
-
-
-            
-    # area_dados = dados.get('area') # Obter os dados do Brasil no JSON
-    # estrutura_formatada = json.dumps(area_dados, indent=4, ensure_ascii=False)
-    # print("Status Code:", resposta.status_code) # Imprimir o código de status da resposta
-    # print(f"Nome: {dados.get('name')}") # Imprime o nome da competição
-    # print(f"Área: {dados.get('area', {}).get('name')}") # Imprime o nome da área da competição
-    # print(f"Temporada Atual: {dados.get('currentSeason', {}).get('startDate')} até {dados.get('currentSeason', {}).get('endDate')}") # Imprime o período da temporada atual
-    # print("==================================")
-    # print("ESTRUTURA COMPLETA DO JSON")
-    # print("==================================\n")
-    # print(estrutura_formatada)
-# else:
-#     print(f"Erro ao obter dados da API: {resposta.status_code}") # Imprimir uma mensagem de erro caso a requisição não tenha sido bem-sucedida
-    
+        print(f"Não foi possível gerar a tabela para a liga '{league}'. Sem dados disponíveis.")

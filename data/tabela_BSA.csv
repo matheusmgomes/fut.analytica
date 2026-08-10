@@ -1,21 +1,21 @@
 posicao,nome_time,total_jogos,vitorias,empates,derrotas,gols_pro,gols_contra,saldo_de_gols,pontos
-1,SE Palmeiras,21,14,5,2,38,16,22,47
-2,CR Flamengo,20,11,6,3,37,18,19,39
-3,CA Paranaense,21,11,4,6,28,19,9,37
-4,Fluminense FC,22,9,7,6,30,26,4,34
-5,Botafogo FR,21,9,5,7,35,32,3,32
-6,EC Bahia,21,8,8,5,29,25,4,32
-7,RB Bragantino,20,9,4,7,26,20,6,31
-8,Coritiba FBC,22,8,6,8,26,28,-2,30
-9,Cruzeiro EC,21,8,6,7,27,30,-3,30
-10,CA Mineiro,21,8,5,8,27,27,0,29
-11,SC Corinthians Paulista,21,7,8,6,22,20,2,29
+1,SE Palmeiras,22,14,6,2,38,16,22,48
+2,CR Flamengo,21,12,6,3,39,18,21,42
+3,CA Paranaense,22,12,4,6,30,19,11,40
+4,Fluminense FC,22,9,8,5,31,26,5,35
+5,Cruzeiro EC,22,9,6,7,30,31,-1,33
+6,EC Bahia,22,8,9,5,29,25,4,33
+7,SC Corinthians Paulista,22,8,8,6,24,20,4,32
+8,RB Bragantino,21,9,4,8,26,22,4,31
+9,Botafogo FR,21,8,6,7,35,33,2,30
+10,Coritiba FBC,22,8,6,8,27,29,-2,30
+11,CA Mineiro,21,8,5,8,27,27,0,29
 12,São Paulo FC,21,7,5,9,26,25,1,26
-13,EC Vitória,21,7,5,9,22,31,-9,26
+13,EC Vitória,22,7,5,10,22,33,-11,26
 14,Grêmio FBPA,21,6,7,8,24,27,-3,25
-15,Mirassol FC,20,6,5,9,23,27,-4,23
-16,Santos FC,20,5,7,8,29,33,-4,22
-17,SC Internacional,21,5,7,9,23,27,-4,22
-18,Clube do Remo,22,5,7,10,26,36,-10,22
-19,CR Vasco da Gama,20,5,6,9,23,31,-8,21
-20,Chapecoense AF,21,1,7,13,19,42,-23,10
+15,Mirassol FC,21,6,5,10,24,30,-6,23
+16,SC Internacional,22,5,8,9,23,27,-4,23
+17,Santos FC,21,5,7,9,29,35,-6,22
+18,CR Vasco da Gama,21,5,7,9,23,31,-8,22
+19,Clube do Remo,22,5,7,10,26,36,-10,22
+20,Chapecoense AF,21,1,7,13,20,43,-23,10
