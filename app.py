@@ -13,9 +13,16 @@ headers = {
 } # Cabeçalho da requisição HTTP, incluindo a chave da API para autenticação
 
 leagues = ['BSA', 'PL', 'PD']
+years = ['2025', '2024', '2023']
 
-def getRequestFromLeague(league: str)->dict:
-    url = f"https://api.football-data.org/v4/competitions/{league}/standings"
+# leagues = {
+#     "Brasil": "BSA",
+#     "Inglaterra": "PL",
+#     "Espanha": "PD"
+# }
+
+def getRequestFromLeague(league: str, year: str)->dict:
+    url = f"https://api.football-data.org/v4/competitions/{league}/standings?season={year}"
 
     response = requests.get(url, headers=headers)
 
@@ -55,20 +62,21 @@ def getTabelaDF(dados: dict)->pd.DataFrame: #recebe o json de dados da API e ret
     return pd.DataFrame(dadosLimpos) # Retorna o DataFrame com os dados limpos 
 
 # Função para salvar a tabela em um arquivo CSV, ajustei por que tava dadno erro na minha maquina
-def saveTabela(df, league):
+def saveTabela(df, league, year):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     output_dir = os.path.join(base_dir, 'data')
     
     os.makedirs(output_dir, exist_ok=True) 
     
-    file_path = os.path.join(output_dir, f'tabela_{league}.csv')
+    file_path = os.path.join(output_dir, f'tabela_{league}_{year}.csv')
     df.to_csv(file_path, index=False)
 
-for league in leagues:
-    dados = getRequestFromLeague(league)
-    tabela = getTabelaDF(dados)
+for year in years:
+    for league in leagues:
+        dados = getRequestFromLeague(league, year)
+        tabela = getTabelaDF(dados)
 
-    if not tabela.empty:
-        saveTabela(tabela, league)
-    else:
-        print(f"Não foi possível gerar a tabela para a liga '{league}'. Sem dados disponíveis.")
+        if not tabela.empty:
+            saveTabela(tabela, league, year)
+        else:
+            print(f"Não foi possível gerar a tabela para a liga '{league}' no ano {year}. Sem dados disponíveis.")
