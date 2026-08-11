@@ -5,23 +5,23 @@ import json # Biblioteca para trabalhar com dados em formato JSON
 import pandas as pd #Biblioteca Pandas para DataFrames e limpeza de dados
 from dotenv import load_dotenv # Biblioteca para carregar variáveis de ambiente de um arquivo .env
 from datetime import datetime # Biblioteca para trabalhar com datas e horas
+from sqlalchemy import create_engine # Biblioteca para criar uma conexão com o banco de dados
 
-# 1 - Carregar as variaveis do ambiente do arquivo .env
+# 1 - Carregar as variaveis do ambiente
 load_dotenv()
 api_token = os.getenv("FOOTBALL_API_KEY") # Pegar a chave da API do arquivo .env
 headers = {
     "X-Auth-Token": api_token
 } # Cabeçalho da requisição HTTP, incluindo a chave da API para autenticação
 
-#leagues = ['BSA', 'PL', 'PD']
 years = ['2025', '2024', '2023']
-
 leagues = {
     "Brasil - Brasileirão Série A": "BSA",
     "Inglaterra - Premier League": "PL",
     "Espanha - La Liga": "PD"
 }
 
+# 2 - Função para fazer a requisição à API e retornar os dados em formato JSON 
 def getRequestFromLeague(league: str, year: str)->dict:
     url = f"https://api.football-data.org/v4/competitions/{league}/standings"
 
@@ -33,6 +33,7 @@ def getRequestFromLeague(league: str, year: str)->dict:
         print("Houve um erro na requisição")
         return {}
 
+# 3 - Função para transformar os dados da API em um DataFrame do Pandas
 def getTabelaDF(dados: dict)->pd.DataFrame: #recebe o json de dados da API e retorna a tabela do campeonato como DataFrame
     
     if not dados or 'standings' not in dados or not dados['standings']:
@@ -62,7 +63,7 @@ def getTabelaDF(dados: dict)->pd.DataFrame: #recebe o json de dados da API e ret
 
     return pd.DataFrame(dadosLimpos) # Retorna o DataFrame com os dados limpos 
 
-# Função para salvar a tabela em um arquivo CSV, ajustei por que tava dadno erro na minha maquina
+# 4 - Função para salvar a tabela em um arquivo CSV, ajustei por que tava dadno erro na minha maquina
 def saveTabela(df, league, year):
     base_dir = os.path.dirname(os.path.abspath(__file__))
     output_dir = os.path.join(base_dir, 'data')
@@ -78,6 +79,7 @@ hora = datetime.now()
 timestamp_coluna = hora.strftime('%Y-%m-%d %H:%M:%S') 
 timestamp_arquivo = hora.strftime('%Y%m%d_%H%M%S')
 
+# 5 - Loop para percorrer os anos e ligas, coletando os dados e armazenando em uma lista de DataFrames
 for year in years:
     for nome_liga, sigla_liga in leagues.items():
         dados = getRequestFromLeague(sigla_liga, year)
@@ -90,7 +92,8 @@ for year in years:
             todas_tabelas.append(tabela)
         else:
             print(f"Não foi possível gerar a tabela para a liga '{nome_liga}' no ano {year}.")
-            
+
+# 6 - Concatenar todas as tabelas em um único DataFrame e salvar em um arquivo CSV           
 if todas_tabelas:
 
     df_final = pd.concat(todas_tabelas, ignore_index=True)
@@ -105,4 +108,47 @@ if todas_tabelas:
     df_final.to_csv(file_path, index=False)
 
 else:
-    print("Nenhum dado foi extraído de nenhuma liga/ano.")
+    print("Nenhum dado de nenhuma liga/ano.")
+    
+# Função para salvar o DataFrame final no banco de dados
+def conectar_mysql():
+    host = os.getenv('MYSQL_HOST', 'localhost')
+    port = os.getenv('MYSQL_PORT', '3306')
+    db = os.getenv('MYSQL_DB', 'fut_analytica_db')
+    user = os.getenv('MYSQL_USER', 'root')
+    password = os.getenv('MYSQL_PASSWORD', '')
+    
+    url = f'mysql+pymysql://{user}:{password}@{host}:{port}/{db}'
+    engine = create_engine(url)
+    return engine
+
+# Função para salvar o DataFrame no MySQL
+def salvar_no_mysql(df, tabela='classificacoes'):
+    try:
+        engine = conectar_mysql()
+        df.to_sql(tabela, engine, if_exists='replace', index=False)
+        print(f"Dados salvos no MySQL, tabela {tabela}")
+        engine.dispose()
+    except Exception as e:
+        print(f"Erro no MySQL: {e}")
+
+# Função para consultar o MySQL e retornar um DataFrame
+def consultar_mysql(query):
+    try:
+        engine = conectar_mysql()
+        with engine.connect() as conn:
+            df_resultado = pd.read_sql_query(query, conn)
+        engine.dispose()
+        return df_resultado
+    except Exception as e:
+        print(f"Erro na consulta: {e}")
+        return pd.DataFrame()
+
+try:
+    salvar_no_mysql(df_final, 'classificacoes')    
+    query = "SELECT COUNT(*) as total FROM classificacoes"
+    resultado = consultar_mysql(query)
+    print(f"Total de registros no banco: {resultado.iloc[0]['total']}")
+    
+except Exception as e:
+    print(f"Falha ao salvar no MySQL: {e}")
