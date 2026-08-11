@@ -4,6 +4,7 @@ import requests # Biblioteca para fazer requisições HTTP
 import json # Biblioteca para trabalhar com dados em formato JSON
 import pandas as pd #Biblioteca Pandas para DataFrames e limpeza de dados
 from dotenv import load_dotenv # Biblioteca para carregar variáveis de ambiente de um arquivo .env
+from datetime import datetime # Biblioteca para trabalhar com datas e horas
 
 # 1 - Carregar as variaveis do ambiente do arquivo .env
 load_dotenv()
@@ -12,19 +13,19 @@ headers = {
     "X-Auth-Token": api_token
 } # Cabeçalho da requisição HTTP, incluindo a chave da API para autenticação
 
-leagues = ['BSA', 'PL', 'PD']
+#leagues = ['BSA', 'PL', 'PD']
 years = ['2025', '2024', '2023']
 
-# leagues = {
-#     "Brasil": "BSA",
-#     "Inglaterra": "PL",
-#     "Espanha": "PD"
-# }
+leagues = {
+    "Brasil - Brasileirão Série A": "BSA",
+    "Inglaterra - Premier League": "PL",
+    "Espanha - La Liga": "PD"
+}
 
 def getRequestFromLeague(league: str, year: str)->dict:
-    url = f"https://api.football-data.org/v4/competitions/{league}/standings?season={year}"
+    url = f"https://api.football-data.org/v4/competitions/{league}/standings"
 
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, params={"season": year})
 
     if response.status_code == 200:
         return response.json()
@@ -71,12 +72,37 @@ def saveTabela(df, league, year):
     file_path = os.path.join(output_dir, f'tabela_{league}_{year}.csv')
     df.to_csv(file_path, index=False)
 
+todas_tabelas = []
+
+hora = datetime.now()
+timestamp_coluna = hora.strftime('%Y-%m-%d %H:%M:%S') 
+timestamp_arquivo = hora.strftime('%Y%m%d_%H%M%S')
+
 for year in years:
-    for league in leagues:
-        dados = getRequestFromLeague(league, year)
+    for nome_liga, sigla_liga in leagues.items():
+        dados = getRequestFromLeague(sigla_liga, year)
         tabela = getTabelaDF(dados)
 
         if not tabela.empty:
-            saveTabela(tabela, league, year)
+            tabela['liga'] = nome_liga
+            tabela['ano'] = year
+            tabela['data_extracao'] = timestamp_coluna
+            todas_tabelas.append(tabela)
         else:
-            print(f"Não foi possível gerar a tabela para a liga '{league}' no ano {year}. Sem dados disponíveis.")
+            print(f"Não foi possível gerar a tabela para a liga '{nome_liga}' no ano {year}.")
+            
+if todas_tabelas:
+
+    df_final = pd.concat(todas_tabelas, ignore_index=True)
+
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    output_dir = os.path.join(base_dir, 'data')
+    os.makedirs(output_dir, exist_ok=True) 
+    
+    nome_arquivo = f'todas_tabelas_{timestamp_arquivo}.csv'
+    file_path = os.path.join(output_dir, nome_arquivo)
+
+    df_final.to_csv(file_path, index=False)
+
+else:
+    print("Nenhum dado foi extraído de nenhuma liga/ano.")
