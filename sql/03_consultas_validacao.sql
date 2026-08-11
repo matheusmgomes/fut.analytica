@@ -3,7 +3,7 @@
 -- ARQUIVO: 03_consultas_validacao.sql
 -- DESCRIÇÃO: Consultas de auditoria para validação de dados e checagem de Views
 -- =============================================================================
-USE USE fut_analytica_db;
+USE fut_analytica_db;
 
 -- 1. Conferência do volume total de registros gravados
 SELECT COUNT(*) AS total_registros_base FROM classificacoes;
