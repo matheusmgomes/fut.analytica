@@ -170,9 +170,9 @@ Execute no MySQL o script `sql/02_views_negocio.sql` para gerar:
 
 ### 2️⃣ Futebol Feminino
 
-**Passo 1. Inicializar o banco feminino**
+**Passo 1. Preparar a fonte de dados**
 
-Execute no MySQL o script `sql/01_setup_feminino.sql` para criar a tabela `classificacoes_feminino`.
+Os dados estáticos estão em `data/classificacoes_feminino.json`. O ETL cria a tabela `classificacoes_feminino` automaticamente, caso ela ainda não exista.
 
 **Passo 2. Executar o ETL feminino**
 
@@ -181,6 +181,10 @@ No terminal, rode a carga de dados do Brasileirão Feminino (2023 a 2025):
 ```bash
 python feminino_etl.py
 ```
+
+O script principal `python app.py` executa as cargas masculina e feminina. O
+arquivo `feminino_etl.py` permanece como um atalho para executar somente a
+carga feminina.
 
 **Passo 3. Compilar as views femininas**
 
