@@ -7,6 +7,7 @@ import pandas as pd #Biblioteca Pandas para DataFrames e limpeza de dados
 from dotenv import load_dotenv # Biblioteca para carregar variáveis de ambiente de um arquivo .env
 from datetime import datetime # Biblioteca para trabalhar com datas e horas
 from sqlalchemy import create_engine, text # Biblioteca para criar uma conexão com o banco de dados
+import time
 
 # 2 - Carregar as variaveis do ambiente
 load_dotenv()
@@ -199,6 +200,7 @@ def coletar_classificacoes_masculinas() -> pd.DataFrame:
             tabela["ano"] = ano
             tabela["data_extracao"] = data_extracao
             tabelas.append(tabela)
+            time.sleep(6) # Pausa de 6 segundos entre as requisições para evitar sobrecarga na API'
 
     if not tabelas:
         return pd.DataFrame()
