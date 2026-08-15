@@ -154,6 +154,11 @@ host = "localhost" # or remote host IP/domain
 port = 3306
 database = "fut_analytica_db"
 ```
+
+Para executar o Streamlit:
+```bash
+streamlit run streamlit.py
+```
 ---
 
 ## 🗄️ Guia de Reprodução no MySQL (Local)
