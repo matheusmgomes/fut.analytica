@@ -138,6 +138,22 @@ MYSQL_PASSWORD=sua_senha
 
 > Obtenha o token gratuito em [football-data.org](https://www.football-data.org/client/register).
 
+### 3. Configuração do Streamlit
+
+Crie uma pasta `.streamlit` no diretório raiz e em seguida um arquivo `secrets.toml` dentro dela para configurar a conexão com o banco MySQL
+
+```
+# .streamlit/secrets.toml
+
+[connections.mysql]
+dialect = "mysql"
+driver = "pymysql"
+username = YOUR_USERNAME
+password = YOUR_PASSWORD
+host = "localhost" # or remote host IP/domain
+port = 3306
+database = "fut_analytica_db"
+```
 ---
 
 ## 🗄️ Guia de Reprodução no MySQL (Local)
