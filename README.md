@@ -148,8 +148,8 @@ Crie uma pasta `.streamlit` no diretório raiz e em seguida um arquivo `secrets.
 [connections.mysql]
 dialect = "mysql"
 driver = "pymysql"
-username = YOUR_USERNAME
-password = YOUR_PASSWORD
+username = "YOUR_USERNAME"
+password = "YOUR_PASSWORD"
 host = "localhost" # or remote host IP/domain
 port = 3306
 database = "fut_analytica_db"
