@@ -253,7 +253,6 @@ sql/03_validacao_feminino.sql
 
 1. Substituir `if_exists='replace'` por estratégia de **upsert por chave** (liga + ano).
 2. Construir a **interface visual interativa em Streamlit**.
-3. Publicar os **dashboards analíticos finalizados no Power BI Desktop**.
 
 ---
 
