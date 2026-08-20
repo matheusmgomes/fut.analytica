@@ -18,7 +18,6 @@ O objetivo da solução é substituir a extração manual de dados por um fluxo 
 <p align="center">
   <img src="assets/demo-projeto.gif" alt="Demonstração do Dashboard" width="850">
 </p>
----
 
 ## 📑 Sumário
 
