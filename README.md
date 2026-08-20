@@ -13,6 +13,12 @@ O objetivo da solução é substituir a extração manual de dados por um fluxo 
 ![Streamlit](https://img.shields.io/badge/Streamlit-Em%20desenvolvimento-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 
 ---
+## 📊 Demonstração do Projeto
+
+<p align="center">
+  <img src="assets/demo-projeto.gif" alt="Demonstração do Dashboard" width="850">
+</p>
+---
 
 ## 📑 Sumário
 
@@ -49,9 +55,9 @@ O objetivo da solução é substituir a extração manual de dados por um fluxo 
 | ✅ | Criação de scripts DDL para criação do schema e tabelas fatos |
 | ✅ | Compilação de views analíticas no MySQL (Gemas Escondidas, Risco/Consistência e Ligas) |
 | ✅ | Scripts de auditoria e validação de carga para bases masculina e feminina |
+| ✅ | Finalização dos relatórios no Power BI Desktop |
 | ⬜ | Estratégia de upsert por chave (liga + ano) no MySQL |
 | ⬜ | Dashboard interativo em Streamlit |
-| ⬜ | Finalização dos relatórios no Power BI Desktop |
 
 ---
 

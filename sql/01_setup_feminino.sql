@@ -28,3 +28,7 @@ CREATE TABLE classificacoes_feminino (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Tabela fato de desempenho do Brasileirão Feminino (2023-2025)';
 
 SELECT *FROM classificacoes_feminino;
+SELECT * FROM classificacoes;
+
+-- Verifica quantos registros há na tabela
+SELECT COUNT(*) FROM classificacoes;
