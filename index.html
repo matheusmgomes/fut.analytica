@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Metadados básicos da página -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fut.Analytica: inteligência de dados para decisões mais precisas no futebol.">
+  <title>Fut.Analytica | Inteligência que entra em campo</title>
+  <link rel="icon" type="image/png" href="assets/logo-fut-analytica.png">
+
+  <!-- Fontes usadas no projeto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Arquivo principal de estilos -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Barra de progresso que acompanha a rolagem da página -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Brilho que acompanha o cursor em telas com mouse -->
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- Cabeçalho e menu de navegação -->
+  <header class="header" id="inicio">
+    <a class="logo" href="#inicio" aria-label="Voltar ao início">
+      <img class="logo-image" src="assets/logo-fut-analytica.png" alt="Logotipo Fut.Analytica">
+      <span>Fut.Analytica</span>
+    </a>
+
+    <div class="header-actions">
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-controls="navegacao-principal"
+        aria-expanded="false"
+      >
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="navigation" id="navegacao-principal" aria-label="Navegação principal">
+      <a href="#solucao">A solução</a>
+      <a href="#analises">Análises</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#metodo">Método</a>
+      <a class="nav-cta" href="#contato">Fale conosco <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Seção de abertura: apresenta a proposta de valor -->
+    <section class="hero" aria-labelledby="titulo-principal">
+      <div class="hero-orb orb-one" aria-hidden="true"></div>
+      <div class="hero-orb orb-two" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow reveal"><span class="pulse-dot"></span> Scouting intelligence para negócios esportivos</p>
+        <h1 id="titulo-principal" class="reveal">Toda decisão<br>merece <em>entrar em campo</em><span>.</span></h1>
+        <p class="hero-text reveal">Transformamos dados dispersos do futebol em leituras claras para identificar oportunidades, reduzir riscos e criar conexões de marca que fazem sentido.</p>
+        <div class="hero-actions reveal">
+          <a class="button button-primary" href="#solucao">Conheça a solução <span>↓</span></a>
+          <a class="text-link" href="#analises">Ver análises <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Logotipo central que reforça a identidade da solução -->
+      <img class="hero-logo reveal" src="assets/logo-fut-analytica.png" alt="Símbolo Fut.Analytica">
+
+      <!-- Cartão decorativo com uma prévia do produto -->
+      <aside class="score-card reveal" aria-label="Prévia de análise de oportunidade">
+        <div class="card-top"><span>RADAR DE OPORTUNIDADES</span></div>
+        <div class="card-score"><strong>87</strong><span>/100</span></div>
+        <div class="score-line"><span>Índice de oportunidade</span><b>Alto potencial</b></div>
+        <div class="bar-chart" aria-hidden="true">
+          <i style="height: 30%"></i><i style="height: 56%"></i><i style="height: 42%"></i><i style="height: 76%"></i><i class="active" style="height: 94%"></i><i style="height: 62%"></i>
+        </div>
+        <div class="card-foot"><span>Dados atualizados</span><span>01.09.2026</span></div>
+      </aside>
+
+      <a class="scroll-hint" href="#solucao"><span></span> Role para explorar</a>
+    </section>
+
+    <!-- Seção que contextualiza o problema do cliente -->
+    <section class="problem section" id="solucao">
+      <div class="problem-layout">
+        <h2 class="reveal">No esporte, intuição abre caminhos. <em>Dados mostram onde ir.</em></h2>
+        <div class="problem-copy reveal">
+          <p>Clubes, marcas e agências precisam decidir rápido: onde investir, com quem conversar e quais movimentos têm maior chance de gerar resultado.</p>
+          <p>A Fut.Analytica organiza o cenário em uma plataforma de inteligência acessível, conectando desempenho em campo a oportunidades de negócio.</p>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card reveal"><strong data-counter="3">0</strong><span>ligas masculinas<br>analisadas</span></article>
+        <article class="stat-card reveal"><strong data-counter="3">0</strong><span>temporadas em<br>comparação</span></article>
+        <article class="stat-card reveal"><strong data-counter="20">0</strong><span>clubes no radar<br>de marcas</span></article>
+        <article class="stat-card accent reveal"><strong>∞</strong><span>possibilidades<br>de decisão</span></article>
+      </div>
+    </section>
+
+    <!-- Seção com as frentes de análise entregues pelo produto -->
+    <section class="analyses section" id="analises">
+      <div class="section-heading">
+        <h2 class="reveal">Análises que saem da tabela e chegam à <em>estratégia.</em></h2>
+      </div>
+      <div class="analysis-list">
+        <article class="analysis-item reveal">
+          <span class="analysis-number">01</span>
+          <div><h3>Gemas escondidas</h3><p>Localizamos clubes fora do topo que combinam produção ofensiva e potencial de visibilidade. São oportunidades que podem passar despercebidas em uma leitura superficial.</p></div>
+          <div class="analysis-tag">Investimento inteligente <span>↗</span></div>
+        </article>
+        <article class="analysis-item reveal">
+          <span class="analysis-number">02</span>
+          <div><h3>Risco & consistência</h3><p>Comparamos três temporadas para medir estabilidade, volatilidade e desempenho. Assim, o investimento não depende apenas do momento atual de um clube.</p></div>
+          <div class="analysis-tag">Decisão com segurança <span>↗</span></div>
+        </article>
+        <article class="analysis-item reveal">
+          <span class="analysis-number">03</span>
+          <div><h3>Comparativo de ligas</h3><p>Agregamos gols marcados, gols sofridos e média de gols por partida por liga e temporada. É a leitura que mostra onde o espetáculo tem mais volume e como ele evolui ao longo do tempo.</p></div>
+          <div class="analysis-tag">Contexto de mercado <span>↗</span></div>
+        </article>
+        <article class="analysis-item reveal">
+          <span class="analysis-number">04</span>
+          <div><h3>Mapa de marcas</h3><p>Cruzamos o desempenho dos clubes da Série A com seus fornecedores esportivos para revelar espaços comerciais e priorizar conversas de patrocínio.</p></div>
+          <div class="analysis-tag">Prospecção assertiva <span>↗</span></div>
+        </article>
+        <article class="analysis-item reveal">
+          <span class="analysis-number">05</span>
+          <div><h3>Futebol feminino</h3><p>Integramos o Brasileirão Feminino ao radar para acompanhar eficiência, resiliência no mata-mata e evolução de clubes em um ciclo de três anos.</p></div>
+          <div class="analysis-tag">Visão de futuro <span>↗</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Seção que explica a jornada do dado até o insight -->
+    <section class="method section" id="metodo">
+      <div class="method-intro">
+        <h2 class="reveal">Do dado bruto ao<br><em>próximo grande passe.</em></h2>
+        <p class="reveal">Um processo estruturado para que cada insight tenha contexto, rastreabilidade e utilidade de negócio.</p>
+      </div>
+      <div class="pipeline">
+        <article class="pipeline-step reveal"><span>01</span><div class="step-icon">⌁</div><h3>Coletamos</h3><p>Consumimos classificações e dados de competições por API, com tratamento para cenários de indisponibilidade.</p></article>
+        <article class="pipeline-step reveal"><span>02</span><div class="step-icon">✦</div><h3>Organizamos</h3><p>Transformamos JSONs complexos em uma base relacional limpa, pronta para cruzamentos confiáveis.</p></article>
+        <article class="pipeline-step reveal"><span>03</span><div class="step-icon">◫</div><h3>Analisamos</h3><p>Views de negócio traduzem números em critérios de oportunidade, risco e desempenho.</p></article>
+        <article class="pipeline-step reveal"><span>04</span><div class="step-icon">↗</div><h3>Decidimos</h3><p>Dashboards e leituras diretas apoiam quem precisa transformar estratégia em ação.</p></article>
+      </div>
+    </section>
+
+    <!-- Seção dedicada ao recorte de oportunidade comercial -->
+    <section class="spotlight section">
+      <div class="spotlight-panel reveal">
+        <div class="spotlight-copy">
+          <p class="eyebrow">EM DESTAQUE. MARCAS E CLUBES</p>
+          <h2>Qual é a próxima<br><em>conexão vencedora?</em></h2>
+          <p>O índice de oportunidade considera posição na tabela e o cenário atual de fornecimento esportivo. O resultado é uma lista priorizada de clubes para abordagem comercial.</p>
+          <a class="button button-light" href="#contato">Quero conhecer o produto <span>→</span></a>
+        </div>
+        <div class="radar" aria-label="Visualização ilustrativa de índice de oportunidade">
+          <div class="radar-ring ring-1"></div><div class="radar-ring ring-2"></div><div class="radar-ring ring-3"></div>
+          <div class="radar-line"></div><div class="radar-dot dot-1"></div><div class="radar-dot dot-2"></div><div class="radar-dot dot-3"></div>
+          <div class="radar-core">ALTA<br><small>OPORTUNIDADE</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Espaço preparado para exibir o relatório interativo do Power BI -->
+    <section class="dashboard section" id="dashboard">
+      <div class="dashboard-heading">
+        <div>
+          <h2 class="reveal">O jogo em números,<br><em>em um só painel.</em></h2>
+        </div>
+        <p class="reveal">Explore os indicadores, filtre competições e acompanhe os recortes que orientam a nossa análise. Caso o painel solicite acesso, entre com a conta autorizada da equipe.</p>
+      </div>
+      <div class="powerbi-frame reveal">
+        <iframe
+          title="Dashboard Fut.Analytica no Power BI"
+          src="https://app.powerbi.com/groups/me/reports/5fc4a279-ce64-409e-be6a-a28d63bd5079?ctid=bd697c1b-c481-479c-841e-c618542675c3&amp;pbi_source=linkShare"
+          loading="lazy"
+          allow="fullscreen"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+        <div class="frame-fallback">
+          <img src="assets/logo-fut-analytica.png" alt="">
+          <p>Seu dashboard interativo está pronto para ser exibido aqui.</p>
+          <a href="https://app.powerbi.com/groups/me/reports/5fc4a279-ce64-409e-be6a-a28d63bd5079?ctid=bd697c1b-c481-479c-841e-c618542675c3&amp;pbi_source=linkShare" target="_blank" rel="noopener">Abrir no Power BI <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção para apresentar os integrantes responsáveis pelo projeto -->
+    <section class="team section" id="equipe">
+      <div class="team-heading">
+
+        <h2 class="reveal">Uma equipe que joga<br><em>com dados e propósito.</em></h2>
+      </div>
+      <p class="team-intro reveal">Conheça as pessoas que transformam dados esportivos em leituras relevantes para clubes, marcas e torcedores. Toque em uma foto para ver o LinkedIn.</p>
+      <div class="team-grid">
+        <!-- Foto e identificação de Caio -->
+        <article class="team-member reveal">
+          <div class="member-photo" tabindex="0" role="button" aria-pressed="false" aria-label="Toque para ver o QR code do LinkedIn de Caio">
+            <div class="photo-flip">
+              <div class="flip-face flip-front">
+                <img src="assets/equipe/caio.png" alt="Caio, integrante da Fut.Analytica">
+              </div>
+              <div class="flip-face flip-back">
+                <div class="qr-slot">
+                  <img src="assets/equipe/qr-caio.png" alt="QR code do LinkedIn de Caio, integrante da Fut.Analytica">
+                </div>
+                <p class="flip-phrase">Vamos nos conectar no LinkedIn? @caioodiniz</p>
+              </div>
+            </div>
+          </div>
+          <h3>Caio</h3><p>Dados e inteligência</p>
+        </article>
+        <!-- Foto e identificação de Eric -->
+        <article class="team-member reveal">
+          <div class="member-photo" tabindex="0" role="button" aria-pressed="false" aria-label="Toque para ver o QR code do LinkedIn de Eric">
+            <div class="photo-flip">
+              <div class="flip-face flip-front">
+                <img src="assets/equipe/eric.jpg" alt="Eric, integrante da Fut.Analytica">
+              </div>
+              <div class="flip-face flip-back">
+                <div class="qr-slot">
+                  <img src="assets/equipe/qr-eric.png" alt="QR code do LinkedIn de Eric, integrante da Fut.Analytica">
+                </div>
+                <p class="flip-phrase">Vamos nos conectar no LinkedIn? @ericfariasds</p>
+              </div>
+            </div>
+          </div>
+          <h3>Eric</h3><p>Engenharia de dados</p>
+        </article>
+        <!-- Foto e identificação de Lucas -->
+        <article class="team-member reveal">
+          <div class="member-photo" tabindex="0" role="button" aria-pressed="false" aria-label="Toque para ver o QR code do LinkedIn de Lucas">
+            <div class="photo-flip">
+              <div class="flip-face flip-front">
+                <img src="assets/equipe/lucas.png" alt="Lucas, integrante da Fut.Analytica">
+              </div>
+              <div class="flip-face flip-back">
+                <div class="qr-slot">
+                  <img src="assets/equipe/qr-lucas.png" alt="QR code do LinkedIn de Lucas, integrante da Fut.Analytica">
+                </div>
+                <p class="flip-phrase">Vamos nos conectar no LinkedIn? @lucascostadados</p>
+              </div>
+            </div>
+          </div>
+          <h3>Lucas</h3><p>Análise de negócio</p>
+        </article>
+        <!-- Foto e identificação de Matheus -->
+        <article class="team-member reveal">
+          <div class="member-photo" tabindex="0" role="button" aria-pressed="false" aria-label="Toque para ver o QR code do LinkedIn de Matheus">
+            <div class="photo-flip">
+              <div class="flip-face flip-front">
+                <img src="assets/equipe/matheus.png" alt="Matheus, integrante da Fut.Analytica">
+              </div>
+              <div class="flip-face flip-back">
+                <div class="qr-slot">
+                  <img src="assets/equipe/qr-matheus.png" alt="QR code do LinkedIn de Matheus, integrante da Fut.Analytica">
+                </div>
+                <p class="flip-phrase">Vamos nos conectar no LinkedIn? @matheus-machado</p>
+              </div>
+            </div>
+          </div>
+          <h3>Matheus</h3><p>Visualização de dados</p>
+        </article>
+        <!-- Foto e identificação de Miguel -->
+        <article class="team-member reveal">
+          <div class="member-photo" tabindex="0" role="button" aria-pressed="false" aria-label="Toque para ver o QR code do LinkedIn de Miguel">
+            <div class="photo-flip">
+              <div class="flip-face flip-front">
+                <img src="assets/equipe/miguel.png" alt="Miguel, integrante da Fut.Analytica">
+              </div>
+              <div class="flip-face flip-back">
+                <div class="qr-slot">
+                  <img src="assets/equipe/qr-miguel.png" alt="QR code do LinkedIn de Miguel, integrante da Fut.Analytica">
+                </div>
+                <p class="flip-phrase">Vamos nos conectar no LinkedIn? @miguel-lucas</p>
+              </div>
+            </div>
+          </div>
+          <h3>Miguel</h3><p>Produto e experiência</p>
+        </article>
+        <!-- Foto e identificação de Tassia -->
+        <article class="team-member reveal">
+          <div class="member-photo" tabindex="0" role="button" aria-pressed="false" aria-label="Toque para ver o QR code do LinkedIn de Tassia">
+            <div class="photo-flip">
+              <div class="flip-face flip-front">
+                <img src="assets/equipe/tassia.png" alt="Tassia, integrante da Fut.Analytica">
+              </div>
+              <div class="flip-face flip-back">
+                <div class="qr-slot">
+                  <img src="assets/equipe/qr-tassia.png" alt="QR code do LinkedIn de Tassia, integrante da Fut.Analytica">
+                </div>
+                <p class="flip-phrase">Vamos nos conectar no LinkedIn? @tassianascimento</p>
+              </div>
+            </div>
+          </div>
+          <h3>Tassia</h3><p>Pesquisa e estratégia</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Encerramento e chamada para contato -->
+    <section class="contact section" id="contato">
+      <p class="eyebrow reveal"><span class="pulse-dot"></span> Vamos conversar?</p>
+      <h2 class="reveal">Dados não jogam sozinhos.<br><em>Vamos escalar a sua estratégia.</em></h2>
+      <a class="contact-link reveal" href="mailto:contato@futanalytica.com.br">contato@futanalytica.com.br <span>↗</span></a>
+    </section>
+  </main>
+
+  <!-- Rodapé com identificação do projeto -->
+  <footer class="footer">
+    <a class="logo" href="#inicio"><img class="logo-image" src="assets/logo-fut-analytica.png" alt="Logotipo Fut.Analytica"><span>Fut.Analytica</span></a>
+    <p>Inteligência esportiva para decisões que movem o jogo.</p>
+    <span>© 2026 Fut.Analytica</span>
+  </footer>
+
+  <!-- Arquivo com as interações e animações -->
+  <script src="script.js" defer></script>
+</body>
+</html>
