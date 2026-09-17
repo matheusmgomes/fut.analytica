@@ -4,6 +4,8 @@
 
 Projeto desenvolvido no bootcamp **Generation Brasil**, squad Fut.Analytica.
 
+🌐 Acesse o projeto: [futanalytica.vercel.app](https://futanalytica.vercel.app/)
+
 O objetivo da solução é substituir a extração manual de dados por um fluxo relacional integrado e automatizado: consumindo dados de campeonatos de futebol via API, tratando-os em Python/Pandas, armazenando-os em banco de dados MySQL relacional com views analíticas e disponibilizando as visões para consumo no Power BI Desktop e interface interativa em Streamlit.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
